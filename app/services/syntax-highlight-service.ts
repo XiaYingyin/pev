@@ -1,5 +1,6 @@
-/// <reference path="highlight.d.ts" />
-/// <reference path="lodash.d.ts" />
+//import {HLJSStatic} from 'highlight.js';
+import * as _ from 'lodash';
+import hljs = require('highlight.js';
 
 export class SyntaxHighlightService {
     OPEN_TAG: string = ' _OPEN_TAG_';

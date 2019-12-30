@@ -1,7 +1,8 @@
 import {IPlan} from '../interfaces/iplan';
 import {EstimateDirection} from '../enums';
-/// <reference path="moment.d.ts" />
-/// <reference path="lodash.d.ts" />
+import {MomentDatePipe} from '../pipes'
+import * as _ from 'lodash';
+import moment = require('moment');
 
 export class PlanService {
     // plan property keys
@@ -50,7 +51,9 @@ export class PlanService {
     getPlans(): Array<IPlan> {
         var plans: Array<IPlan> = [];
 
-        for (var i in localStorage) {
+        for (let i in localStorage) {
+
+            
             if (_.startsWith(i, this.PEV_PLAN_TAG)) {
                 plans.push(JSON.parse(localStorage[i]));
             }

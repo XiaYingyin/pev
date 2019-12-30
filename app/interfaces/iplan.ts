@@ -1,4 +1,6 @@
-export interface IPlan {
+import { Input } from "@angular/core";
+
+export class IPlan {
   id: string;
   name: string;
   content: any;

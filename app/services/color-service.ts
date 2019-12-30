@@ -1,3 +1,4 @@
+
 export class ColorService {
        /**
         * http://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion

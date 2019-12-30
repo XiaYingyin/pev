@@ -1,5 +1,5 @@
-import {Component, OnInit} from 'angular2/core';
-import {ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 import {IPlan} from '../../interfaces/iplan';
 import {HighlightType, ViewMode} from '../../enums';
@@ -10,10 +10,9 @@ import {DurationPipe, DurationUnitPipe} from '../../pipes';
 
 @Component({
     selector: 'plan-view',
-    templateUrl: './components/plan-view/plan-view.html',
-    directives: [ROUTER_DIRECTIVES, PlanNode],
+    templateUrl: 'app/components/plan-view/plan-view.html',
     providers: [PlanService, SyntaxHighlightService],
-    pipes: [DurationPipe, DurationUnitPipe]
+    //pipes: [DurationPipe, DurationUnitPipe]
 })
 export class PlanView {
     id: string;
@@ -36,8 +35,8 @@ export class PlanView {
     highlightTypes = HighlightType; // exposing the enum to the view
     viewModes = ViewMode;
 
-    constructor(private _planService: PlanService, routeParams: RouteParams) {
-        this.id = routeParams.get('id');
+    constructor(private _planService: PlanService, routeParams: ActivatedRoute) {
+        this.id = routeParams.snapshot.params['id'];
     }
 
     getPlan() {

@@ -13,5 +13,13 @@
     "exclude": [
         "node_modules"
     ],
-    "compileOnSave": false
+    "compileOnSave": false,
+    "typeRoots": [
+        "node_modules/@types"
+       ],
+    "types" : ["lodash", "highlight.js", "moment"],
+    "lib": [
+        "es2017",
+        "dom"
+       ]
 }

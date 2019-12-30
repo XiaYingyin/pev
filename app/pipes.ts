@@ -1,15 +1,16 @@
-import {Pipe} from 'angular2/core';
-/// <reference path="moment.d.ts" />
+import {Pipe, PipeTransform} from '@angular/core';
+import moment from 'moment';
+import * as _ from 'lodash';
 
 @Pipe({ name: 'momentDate' })
-export class MomentDatePipe {
+export class MomentDatePipe implements PipeTransform {
     transform(value: string, args: string[]): any {
         return moment(value).format('LLL');
     }
 }
 
 @Pipe({ name: 'duration' })
-export class DurationPipe {
+export class DurationPipe implements PipeTransform {
     transform(value: number): string {
         var duration: string = '';
 
@@ -27,7 +28,7 @@ export class DurationPipe {
 }
 
 @Pipe({ name: 'durationUnit' })
-export class DurationUnitPipe {
+export class DurationUnitPipe implements PipeTransform {
     transform(value: number) {
         var unit: string = '';
 

@@ -1,5 +1,5 @@
 import {IPlan} from '../../interfaces/iplan';
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, Directive, Input} from '@angular/core';
 import {HighlightType, EstimateDirection, ViewMode} from '../../enums';
 import {DurationPipe, DurationUnitPipe} from '../../pipes';
 
@@ -7,18 +7,17 @@ import {PlanService} from '../../services/plan-service';
 import {SyntaxHighlightService} from '../../services/syntax-highlight-service';
 import {HelpService} from '../../services/help-service';
 import {ColorService} from '../../services/color-service';
-
-/// <reference path="lodash.d.ts" />
+import * as _ from 'lodash';
 
 @Component({
     selector: 'plan-node',
-    inputs: ['plan', 'node', 'viewOptions'],
-    templateUrl: './components/plan-node/plan-node.html',
-    directives: [PlanNode],
+    //inputs: ['plan', 'node', 'viewOptions'],
+    templateUrl: 'app/components/plan-node/plan-node.html',
     providers: [PlanService, SyntaxHighlightService, HelpService, ColorService],
-    pipes: [DurationPipe, DurationUnitPipe]
+    //pipes: [DurationPipe, DurationUnitPipe]
 })
 
+//@Directive({selector: '[PlanNode]'})
 export class PlanNode {
     // consts
     NORMAL_WIDTH: number = 220;
@@ -33,9 +32,9 @@ export class PlanNode {
     ESTIMATE_TAG: string = 'bad estimate';
 
     // inputs
-    plan: IPlan;
-    node: any;
-    viewOptions: any;
+    @Input() plan: IPlan;
+    @Input() node: any;
+    @Input() viewOptions: any;
 
     // UI flags
     showDetails: boolean;
@@ -74,7 +73,7 @@ export class PlanNode {
         this.calculateTags();
 
         this.plannerRowEstimateDirection = this.node[this._planService.PLANNER_ESIMATE_DIRECTION];
-        this.plannerRowEstimateValue = _.round(this.node[this._planService.PLANNER_ESTIMATE_FACTOR]);
+        this.plannerRowEstimateValue = Math.round(this.node[this._planService.PLANNER_ESTIMATE_FACTOR]);
     }
 
     ngDoCheck() {

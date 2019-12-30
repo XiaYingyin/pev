@@ -1,18 +1,15 @@
-import {Component, OnInit} from 'angular2/core';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {Component, OnInit} from '@angular/core';
+//import {ROUTER_DIRECTIVES} from '@angular/router';
 
 import {IPlan} from '../../interfaces/iplan';
 import {PlanService} from '../../services/plan-service';
-import {PlanNew} from '../plan-new/plan-new';
-
-import {MomentDatePipe} from '../../pipes';
+import { PlanNew } from '../plan-new/plan-new';
+import { PlanView } from '../plan-view/plan-view';
 
 @Component({
     selector: 'plan-list',
-    templateUrl: './components/plan-list/plan-list.html',
-    providers: [PlanService],
-    directives: [ROUTER_DIRECTIVES, PlanNew],
-    pipes: [MomentDatePipe]
+    templateUrl: 'app/components/plan-list/plan-list.html',
+    providers: [PlanService]
 })
 export class PlanList {
     plans: Array<IPlan>;
@@ -28,12 +25,12 @@ export class PlanList {
         this.plans = this._planService.getPlans();
     }
 
-    requestDelete(plan) {
+    requestDelete(plan: IPlan) {
         this.openDialog = true;
         this.planToDelete = plan;
     }
 
-    deletePlan(plan) {
+    deletePlan(plan: IPlan) {
         this.openDialog = false;
         console.log(this.planToDelete);
         this._planService.deletePlan(this.planToDelete);

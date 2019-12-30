@@ -1,4 +1,4 @@
-/// <reference path="lodash.d.ts" />
+import * as _ from 'lodash';
 
 export class HelpService {
    getNodeTypeDescription(nodeType: string) {
